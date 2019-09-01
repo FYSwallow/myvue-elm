@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="shopCart">
-            <div class="content" @click="toggleList()">
+            <div class="content" @click.stop="toggleList()">
                 <div class="content-left">
                     <div class="logo-wrapper"  ref="num">
                         <div class="logo" :class="{'highlight': totalCount > 0}">
@@ -30,27 +30,27 @@
                         </div>
                     </transition>
                 </div>
-                <transition name="fade">
-                    <div class="shopcart-list" v-show="listShow">
-                        <div class="list-header">
-                            <h1 class="title">购物车</h1>
-                            <span class="empty" @click="empty">清空</span>
-
-                        </div>
-                        <div class="list-content">
-                            <ul>
-                                <li class="shopcart-food"  v-for="(food, index) in selectFood" :key="index" v-show="food.count !== 0">
-                                    <span class="name">{{food.name}}</span>
-                                    <div class="price">￥{{food.price * food.count}}</div>
-                                    <div class="cartControl-wrapper">
-                                        <cartControl :food="food"></cartControl>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </transition>
             </div>
+            <transition name="fade">
+                <div class="shopcart-list" v-show="listShow">
+                    <div class="list-header">
+                        <h1 class="title">购物车</h1>
+                        <span class="empty" @click.stop="empty">清空</span>
+
+                    </div>
+                    <div class="list-content">
+                        <ul>
+                            <li class="shopcart-food"  v-for="(food, index) in selectFood" :key="index" v-show="food.count !== 0">
+                                <span class="name">{{food.name}}</span>
+                                <div class="price">￥{{food.price * food.count}}</div>
+                                <div class="cartControl-wrapper">
+                                    <cartControl :food="food"></cartControl>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
